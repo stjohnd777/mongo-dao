@@ -109,4 +109,60 @@ and callback is also possible
 ```
 
  ## REST Services  
+ 
+CRYPTO service is running on 8000
 
+* POST http://localhost:9000/hash
+```javascript
+     Accept: */*
+     Cache-Control: no-cache
+
+     { "text" : "HashMe" , "hash" : "AES" }
+```
+
+* POST http://localhost:9000/doestexthashto
+```javascript
+     Accept: */*
+     Cache-Control: no-cache
+
+     { "text" : "HashMe" , "hash" : "AES" }
+```
+
+* POST http://localhost:9000/encrypt
+```javascript
+     Accept: */*
+     Cache-Control: no-cache
+
+     { "text" : "Test Me Please" , "algo" : "AES" }
+     
+* POST http://localhost:9000/decrypt
+```javascript
+     Accept: */*
+     Cache-Control: no-cache
+
+     { "cipher" : "U2FsdGVkX1/DqNkzMTGDNqC2PvkB1ITocFWIBuGCyfY=" , "algo" : "AES" }
+```
+
+```
+*POST http://localhost:9000/decrypt
+```javascript
+     Accept: */*
+     Cache-Control: no-cache
+
+     { "cipher" : "U2FsdGVkX1/DqNkzMTGDNqC2PvkB1ITocFWIBuGCyfY=" , "algo" : "AES" }
+```
+UUID service is running on 10000
+* http://localhost:8000/uuid
+```javascript
+     {
+     success: true,
+     uuid: "7101b79e-0873-452c-b28b-761b02ec654f"
+     }
+```
+DAO Services service is running on 9000
+* GET     http://localhost:9000/dao/:collectionName
+* GET     http://localhost:9000/dao/:collectionName/:id
+* GET     http://localhost:9000/dao/query/:collectionName/*
+* PUT     http://localhost:9000/dao/:collectionName/*
+* POST    http://localhost:9000/dao/:collectionName/ 
+* DELETE  http://localhost:9000/dao/delete/:collectionName/:id'
