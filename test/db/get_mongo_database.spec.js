@@ -1,4 +1,4 @@
-const GetDatabasePromise = require("../../src/db/getmongo_database")
+const GetDatabasePromise = require("../../src/db/get_mongo_database")
 
 describe("Get Database", function(){
 

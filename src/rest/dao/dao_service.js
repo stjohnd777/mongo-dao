@@ -27,7 +27,6 @@ let endpointFetchById = new RestEndpoint('GET', '/dao/:collectionName/:id', asyn
     res.json(ret);
 });
 
-
 let endpointQuery = new RestEndpoint('GET', '/dao/query/:collectionName/*', async (req, res) => {
 
     let collectionName = req.params.collectionName;
@@ -74,12 +73,10 @@ let endpointQuery = new RestEndpoint('GET', '/dao/query/:collectionName/*', asyn
     }
 });
 
-
 let update = new RestEndpoint('PUT', '/dao/:collectionName/', async (req, res) => {
     let ret = 'not implemented';
     res.json(ret);
 });
-
 
 let create = new RestEndpoint('POST', '/dao/:collectionName/', async (req, res) => {
     let ret = await  DAO[req.params.collectionName].insert(req.body);
@@ -94,15 +91,5 @@ let endpointDeleteById = new RestEndpoint('DELETE', '/delete/:collectionName/:id
 let endpoints = [endpointList,endpointFetchById, endpointFetchAll, endpointQuery, create, endpointDeleteById];
 
 let services = new RestServiceFactory('DAO Services', endpoints, false,undefined, undefined);
-
-async function go() {
-    let InitDao = require('../.././../basement/InitDAO');
-    await InitDao();
-    services.start(8989);
-}
-
-(function (){
-     go();
-})();
 
 module.exports = services;

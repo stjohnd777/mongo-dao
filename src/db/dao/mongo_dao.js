@@ -1,5 +1,5 @@
 const ObjectID = require('mongodb').ObjectID,
-    daoConf = require('../config_mongo_dao');
+     daoConf = require('../config_mongo_dao');
 
 /**
  * default query limit
@@ -588,10 +588,10 @@ function addStaticFunctions(db, DAO) {
      *
      * @returns {Promise}
      */
-    DAO.listAllCollections  = () =>{
+    DAO.listAllCollections  = (database = DAO.db) =>{
 
         return new Promise((resolve, reject) => {
-            db.listCollections().toArray(function(err, collInfos) {
+            database.listCollections().toArray(function(err, collInfos) {
                 if (err) {
                     logError(`reject ListAllCollections(${this.collectionName})`, err);
                     reject(err)
@@ -761,6 +761,30 @@ function GetDAO(database = global.db) {
         let keys = Object.keys(daoConf);
 
         //logInfo(keys);
+
+        // if ( daoConf.pull_all === true ){
+        //
+        //     let p = new Promise((resolve, reject) => {
+        //         database.listCollections().toArray(function (err, collInfos) {
+        //             if (err) {
+        //                 logError(`reject ListAllCollections(${this.collectionName})`, err);
+        //                 reject(err)
+        //             } else {
+        //                 logInfo(`resolve ListAllCollections(${this.collectionName})`, collInfos);
+        //                 resolve(collInfos);
+        //             }
+        //         });
+        //     });
+        //     let col = await p;
+        //     col.forEach( c=>{
+        //        keys[c.name] = {};
+        //     });
+        //
+        //
+        //
+        // }else {
+        //     keys = Object.keys(daoConf);
+        // }
 
         keys.forEach(name => {
 

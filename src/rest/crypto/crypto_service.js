@@ -23,6 +23,7 @@ module.exports.service = new RestServiceFactory(
             let ret = undefined;
             try {
                 let text = req.body.text;
+                let algo = req.body.algo;
                 let hash = await crypto_api.Hash(text)
                 ret = {
                     success : true,
@@ -99,7 +100,5 @@ module.exports.service = new RestServiceFactory(
 
 
 module.exports.start = function(port){
-    console.log("crypto service started on " + port);
     module.exports.service.start(port);
 };
-module.exports.start(9000);//config.services.crypto.port);

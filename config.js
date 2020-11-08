@@ -6,7 +6,7 @@ module.exports = {
         crt_file: ""
     }
     ,
-    mongo: [
+    mongo:
         {
             category : 'standalone'
             ,
@@ -16,19 +16,16 @@ module.exports = {
             ,
             password : ''
             ,
-            hosts : ['localhost']
-            ,
-            ports : [ 27017 ]
+            hosts : [ { host : 'localhost', port :27017 }]
             ,
             databaseName : 'automa'
         }
-    ]
+
     ,
     services : {
         uuid :{
             name: 'uuid',
-            host : 'localhost',
-            port : 8989,
+            port : 8000,
             use_https : false,
             https: {
                 key_file: "",
@@ -40,8 +37,7 @@ module.exports = {
         ,
         dao :{
             name: 'dao',
-            host : 'localhost',
-            port : 8990,
+            port : 9000,
             use_https : false,
             https: {
                 key_file: "",
@@ -53,8 +49,7 @@ module.exports = {
         ,
         crypto:{
             name: 'crypto',
-            host : 'localhost',
-            port : 8991,
+            port : 10000,
             use_https : false,
             https: {
                 key_file: "",
