@@ -1,4 +1,4 @@
-const GetMongoConnectionURL = require("../../src/db/get_mongo_connection_url")
+const GetMongoConnectionURL = require("../../src/db/mongodb/get_mongo_connection_url")
 
 // mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
 

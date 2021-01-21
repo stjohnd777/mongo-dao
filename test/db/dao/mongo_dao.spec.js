@@ -2,8 +2,8 @@ const expect = require('chai').expect,
       should = require('chai').should(),
       UUID = require('uuid') //'../../src/api/uuid/UUIDApi'),
       ObjectID = require('mongodb').ObjectID,
-      Get_mongo_connection_url = require('../../../src/db/get_mongo_connection_url'),
-      GetMongoDatabase = require('../../../src/db/get_mongo_database'),
+      Get_mongodb_conn_url = require('../../../src/db/mongodb/get_mongo_connection_url'),
+      GetMongoDatabase = require('../../../src/db/mongodb/get_mongo_database'),
       GetDAO = require('../../../src/db/dao/mongo_dao');
 
 let _id;
@@ -20,7 +20,7 @@ describe ("MongoDAO Tests", async function (){
             databaseName: 'automa',
             hosts: [{host: 'localhost', port: '27017'}]
         };
-        let url = Get_mongo_connection_url(local);
+        let url = Get_mongodb_conn_url(local);
         expect(url).to.be.not.null;
         expect(url).to.be.not.undefined;
 
@@ -68,7 +68,7 @@ describe ("MongoDAO Tests", async function (){
                 databaseName: 'automa',
                 hosts: [{host: 'localhost', port: '27017'}]
             };
-            let url = Get_mongo_connection_url(local);
+            let url = Get_mongodb_conn_url(local);
             let db = await GetMongoDatabase(url)
             db = db.db('automa');
             expect(db).to.be.not.null;

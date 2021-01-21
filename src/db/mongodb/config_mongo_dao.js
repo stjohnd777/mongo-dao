@@ -8,7 +8,7 @@ module.exports = {
     , users: {
         // addition methods will be ducked onto the
         // user dao DAO.users from
-        extension: require('./dao/extensions/user_ext')
+        extension: require('../dao/extensions/user_ext')
     }
     , runs: {}
     , abstract_view : {
@@ -16,7 +16,7 @@ module.exports = {
         // but the DAO.abstract_view will have the functions defined
         // in moduel below ducked
         isAbstraction : true,
-        extension : require('./dao/abstraction/abstration')
+        extension : require('../dao/abstraction/abstration')
     }
 }
 

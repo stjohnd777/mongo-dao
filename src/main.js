@@ -1,6 +1,6 @@
 const config = require('../config'),
-    Get_mongo_connection_url = require('../src/db/get_mongo_connection_url'),
-    GetMongoDatabase = require('../src/db/get_mongo_database'),
+    Get_mongo_connection_url = require('./db/mongodb/get_mongo_connection_url'),
+    GetMongoDatabase = require('./db/mongodb/get_mongo_database'),
     GetDAO = require('../src/db/dao/mongo_dao'),
     dao_service = require('./rest/dao/dao_service')
     ,
@@ -17,7 +17,7 @@ async function InitDAO (){
         hosts: config.mongo.hosts
     };
 
-    let url = Get_mongo_connection_url(local);
+    let url = Get_mongodb_conn_url(local);
     let db = await GetMongoDatabase(url)
     db = db.db('automa'); // TODO : WTF
     GetDAO(db)

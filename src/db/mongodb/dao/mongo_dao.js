@@ -1,5 +1,5 @@
 const ObjectID = require('mongodb').ObjectID,
-     daoConf = require('../config_mongo_dao');
+     daoConf = require('../mongodb/config_mongo_dao');
 
 /**
  * default query limit
@@ -14,7 +14,7 @@ let maxDocs = 100000;
  */
 let log = false;
 
-// TODO : move the log function to RavenLogger in seperate ticket when adressing other logger issues.
+// TODO : move the log function
 function logInfo(msg,obj) {
 
     if(log) {
@@ -59,7 +59,7 @@ function logError(msg,obj) {
 /**
  * Generic CRUD operations for on MongoDB at the collection level
  */
-class Mongo_dao {
+class Mongo_Dao {
 
     /**
      * @constructor
@@ -67,7 +67,7 @@ class Mongo_dao {
      * @param collectionName - MongoDB colllectionName
      */
     constructor(database, collectionName) {
-        Mongo_dao.db = database; // Humm .. could be problematic in a many db env, I am aware, only one now.
+        Mongo_Dao.db = database; // Humm .. could be problematic in a many db env, I am aware, only one now.
         this.db = database;
         this.collectionName = collectionName;
     }
@@ -621,7 +621,7 @@ function addStaticFunctions(db, DAO) {
                     reject(err)
                 } else {
                     logInfo(`resolve CreateCollection(${this.collectionName})`, res);
-                    let dao = new Mongo_dao(db,collectionName)
+                    let dao = new Mongo_Dao(db,collectionName)
                     DAO[collectionName] = dao;
                     resolve(dao);
                 }
@@ -794,7 +794,7 @@ function GetDAO(database = global.db) {
 
             let aDao = {};
             if (!daoConf[name].hasOwnProperty('isAbstraction')) {
-                aDao = new Mongo_dao(database, name);
+                aDao = new Mongo_Dao(database, name);
                 aDao.isAbstract = false;
             }else {
                 aDao.isAbstract = true;

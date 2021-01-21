@@ -18,7 +18,7 @@
  * @returns {string}
  * @constructor
  */
-function Get_mongo_connection_url (opts ){
+function Get_mongodb_conn_url (opts ){
 
     let hosts = opts.hosts,
         databaseName = opts.databaseName,
@@ -49,4 +49,4 @@ function Get_mongo_connection_url (opts ){
     }
     return url;
 }
-module.exports = Get_mongo_connection_url;
+module.exports = Get_mongodb_conn_url;
