@@ -1,4 +1,4 @@
-
+const config = require('../../config')
 /**
  * Models a REST service endpoint,
  *
@@ -23,7 +23,15 @@ module.exports.RestEndpoint = RestEndpoint;
  * @param secret
  * @constructor
  */
-function RestServiceFactory(name, endpoints, middleWares = [], secure = false , secret =  '1234567890QWERTY', _app){
+function RestServiceFactory(
+    name,
+    endpoints,
+    middleWares = [],
+    _app,
+    secure = false ,
+    secret =config.https.secret,
+    key_file =config.https.key_file,
+    crt_file = config.https.crt_file){
 
     let service = name;
 
@@ -31,13 +39,15 @@ function RestServiceFactory(name, endpoints, middleWares = [], secure = false , 
         provider(req,res);
     };
 
-    let express = require('express');
 
+    // if we have an express app ues it otherwise create
+    // one
     if ( _app) {
         var app = _app;
     }else {
+        // Create Express
+        let express = require('express');
         var app = express();
-
     }
 
     // Not sure of scope I need yet
@@ -50,8 +60,10 @@ function RestServiceFactory(name, endpoints, middleWares = [], secure = false , 
         https = require('https');
 
         httpsOptions = {
-            key: fs.readFileSync( config.https.key_file),
-            cert: fs.readFileSync( config.https.crt_file)
+            // key: fs.readFileSync( config.https.key_file),
+            // cert: fs.readFileSync( config.https.crt_file)
+            key: fs.readFileSync( key_file),
+            cert: fs.readFileSync( crt_file)
         };
     }
     // Set up the session
@@ -88,14 +100,18 @@ function RestServiceFactory(name, endpoints, middleWares = [], secure = false , 
     if ( middleWares.length > 0) {
 
         // TODO : step throught the array
+        middleWares.forEach( m =>{
+            app.use( (req, res, next) =>{
+                m()
+                next();
+            });
+        })
 
-        // app.use(function (req, res, next) {
-        //     next();
-        // });
+
     }
 
     // PING ENDPOINT
-    app.get('/ping', function(req,res){
+    app.get(`/${name}/ping`, function(req,res){
         let now = new Date();
         res.json( {
             success: true,
@@ -153,7 +169,7 @@ function RestServiceFactory(name, endpoints, middleWares = [], secure = false , 
                 if(callback) {
                     callback(err, res);
                 }
-            });
+             });
         };
     }
 

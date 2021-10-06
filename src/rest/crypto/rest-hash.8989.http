@@ -1,0 +1,13 @@
+POST http://localhost:8989/hash
+Accept: application/json
+
+{
+   "algo": "algo",
+   "text" :"This is a message to encrypt"
+}
+
+<> 2021-09-05T151838.200.json
+
+
+
+###

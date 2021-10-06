@@ -1,0 +1,14 @@
+POST http://localhost:8989/dosestexthashto
+Accept: application/json
+
+
+{
+   "algo": "algo",
+   "text" :"This is a message to encrpt",
+   "hash": "$2b$10$h0yWTkjTyX2B6kUVgXNRtuDiE.9F4PvVPkboZ7XXd4iGAGHZZ0N9i"
+}
+
+
+
+
+###

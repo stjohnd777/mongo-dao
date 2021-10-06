@@ -18,7 +18,7 @@ let endpointList = new RestEndpoint('GET', '/dao', async (req, res) => {
 });
 
 let endpointFetchAll = new RestEndpoint('GET', '/dao/:collectionName/', async (req, res) => {
-    let ret = await  DAO[req.params.collectionName].fetchAll(req.params.id);
+    let ret = await  DAO[req.params.collectionName].fetchAll(req.params.collectionName);
     res.json(ret);
 });
 

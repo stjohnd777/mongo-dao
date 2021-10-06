@@ -166,3 +166,7 @@ DAO Services service is running on 9000
 * PUT     http://localhost:9000/dao/:collectionName/*
 * POST    http://localhost:9000/dao/:collectionName/ 
 * DELETE  http://localhost:9000/dao/delete/:collectionName/:id'
+
+
+
+https://flaviocopes.com/express-https-self-signed-certificate/

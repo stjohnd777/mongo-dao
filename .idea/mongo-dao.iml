@@ -4,5 +4,8 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="primesjs" />
+    <orderEntry type="module" module-name="gql-apollo" />
+    <orderEntry type="module" module-name="Grid-ConwayTemplate" />
   </component>
 </module>
